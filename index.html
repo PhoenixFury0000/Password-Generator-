@@ -1,0 +1,177 @@
+<!doctype html>
+
+<html lang="en">
+
+<head>
+
+  <meta charset="utf-8" />
+
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+
+  <title>Password Generator — Phoenix</title>
+
+  <link rel="stylesheet" href="style.css">
+
+  <!-- preconnect for fonts (optional) -->
+
+  <link href="https://fonts.googleapis.com" rel="preconnect" crossorigin>
+
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+
+</head>
+
+<body>
+
+  <div id="app" class="app">
+
+    <header class="topbar">
+
+      <div class="brand" aria-hidden="true">
+
+        <!-- Animated Lock SVG (changes with strength) -->
+
+        <svg id="logoLock" class="logo" viewBox="0 0 24 24" width="36" height="36" aria-hidden="true">
+
+          <g fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+
+            <rect x="3" y="10" width="18" height="11" rx="2"></rect>
+
+            <path d="M7 10V7a5 5 0 0 1 10 0v3"></path>
+
+          </g>
+
+        </svg>
+
+        <div class="title">
+
+          <div class="name">Password Generator</div>
+
+          <div class="sub">by Phoenix</div>
+
+        </div>
+
+      </div>
+
+      <div class="controls">
+
+        <button id="themeToggle" class="icon-btn" aria-pressed="false" title="Toggle theme">
+
+          <!-- Sun / Moon icon toggles via CSS -->
+
+          <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M12 3v2"></path></svg>
+
+        </button>
+
+      </div>
+
+    </header>
+
+    <main class="card" id="card" tabindex="0" aria-label="Password generator card">
+
+      <!-- Password display + action icons -->
+
+      <div class="password-area">
+
+        <button id="revealBtn" class="mini-btn" aria-pressed="false" title="Toggle reveal">
+
+          <svg id="eyeIcon" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7S1 12 1 12z"/><circle cx="12" cy="12" r="3"/></svg>
+
+        </button>
+
+        <input id="password" class="password" aria-label="Generated password" readonly placeholder="— generating —" />
+
+        <div class="right-actions">
+
+          <button id="copyBtn" class="action" title="Copy password (C)">
+
+            <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+
+            <span class="label">Copy</span>
+
+          </button>
+
+        </div>
+
+      </div>
+
+      <div class="meta-row">
+
+        <div class="length-control">
+
+          <label for="length">Length</label>
+
+          <div class="range-row">
+
+            <input id="length" type="range" min="6" max="64" value="16" aria-label="Password length slider">
+
+            <input id="lengthNumber" class="num" type="number" min="6" max="64" value="16" aria-label="Password length number">
+
+          </div>
+
+        </div>
+
+        <div class="entropy">
+
+          <div class="strength">
+
+            <div id="strengthBar" class="strength-bar" aria-hidden="true"></div>
+
+          </div>
+
+          <div id="strengthLabel" class="strength-label" aria-live="polite">—</div>
+
+        </div>
+
+      </div>
+
+      <fieldset class="options" aria-label="Password options">
+
+        <legend>Character sets</legend>
+
+        <label><input id="optUpper" type="checkbox" checked> Uppercase (A–Z)</label>
+
+        <label><input id="optLower" type="checkbox" checked> Lowercase (a–z)</label>
+
+        <label><input id="optNumbers" type="checkbox" checked> Numbers (0–9)</label>
+
+        <label><input id="optSymbols" type="checkbox" checked> Symbols (!@#...)</label>
+
+        <label><input id="optExclude" type="checkbox"> Exclude ambiguous (O0Il)</label>
+
+      </fieldset>
+
+      <div class="actions-row">
+
+        <button id="generateBtn" class="primary" title="Generate new password">Generate</button>
+
+        <button id="regenerateBtn" class="ghost" title="Regenerate with same options">Regenerate</button>
+
+      </div>
+
+      <section class="history" aria-label="Recent passwords">
+
+        <h4>Recent</h4>
+
+        <ul id="history" class="history-list" aria-live="polite"></ul>
+
+      </section>
+
+    </main>
+
+    <!-- Confetti canvas -->
+
+    <canvas id="confetti-canvas" class="confetti" aria-hidden="true"></canvas>
+
+    <footer class="footer">
+
+      <small>Made by Phoenix</small>
+
+    </footer>
+
+  </div>
+
+  <script src="script.js" defer></script>
+
+</body>
+
+</html>
